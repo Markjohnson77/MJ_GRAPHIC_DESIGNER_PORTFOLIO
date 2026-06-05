@@ -16,13 +16,19 @@
 
     <!-- NAV -->
 
-    <nav>
+    <nav id="main-nav">
 
         <div class="logo">
             <img src="markjohnson1.png" alt="MJ graphic designer">
         </div>
 
-        <ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul id="nav-menu">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#photos">Photos</a></li>
@@ -101,43 +107,53 @@
             <div class="preview-buttons">
 
                 <button onclick="changeVideo('1FXcaGDQMTXbIrjIgU0ujF4KJjMJP1GF1')">
-                    ▶ Preview 01
+                    <span class="btn-label-full">▶ Preview 01</span>
+                    <span class="btn-label-short">▶ 1</span>
                 </button>
 
                 <button onclick="changeVideo('1FZUqYaobDhduGCIx7U02EsY-w1UM0fzV')">
-                    ▶ Preview 02
+                    <span class="btn-label-full">▶ Preview 02</span>
+                    <span class="btn-label-short">▶ 2</span>
                 </button>
 
                 <button onclick="changeVideo('1oAc5kkdBXKeqTVXMPj2ZrB9aOKAiD0IO')">
-                    ▶ Preview 03
+                    <span class="btn-label-full">▶ Preview 03</span>
+                    <span class="btn-label-short">▶ 3</span>
                 </button>
 
                 <button onclick="changeVideo('1Lm618EpdqXOBKd6aGeURlF_Q8dhxwI3i')">
-                    ▶ Preview 04
+                    <span class="btn-label-full">▶ Preview 04</span>
+                    <span class="btn-label-short">▶ 4</span>
                 </button>
 
                 <button onclick="changeVideo('1ZlXkGPYeSDLceh5VFomvezWQG_gplZ28')">
-                    ▶ Preview 05
+                    <span class="btn-label-full">▶ Preview 05</span>
+                    <span class="btn-label-short">▶ 5</span>
                 </button>
 
                 <button onclick="changeVideo('1vqLV6s6j3iBOhaOHc9xPsDepI4jSIfKj')">
-                    ▶ Preview 06
+                    <span class="btn-label-full">▶ Preview 06</span>
+                    <span class="btn-label-short">▶ 6</span>
                 </button>
 
                 <button onclick="changeVideo('18GQcLcE17ZdbQMza_637X5uEYEhpzJ5N')">
-                    ▶ Preview 07
+                    <span class="btn-label-full">▶ Preview 07</span>
+                    <span class="btn-label-short">▶ 7</span>
                 </button>
 
                 <button onclick="changeVideo('1iMIH9tbshgUgKQF6Qu_XpJuVtpMv2Fnc')">
-                    ▶ Preview 08
+                    <span class="btn-label-full">▶ Preview 08</span>
+                    <span class="btn-label-short">▶ 8</span>
                 </button>
 
                 <button onclick="changeVideo('13Dh8AmdBIUwJF7KGgzSqYrWBVQOEMZB4')">
-                    ▶ Preview 09
+                    <span class="btn-label-full">▶ Preview 09</span>
+                    <span class="btn-label-short">▶ 9</span>
                 </button>
 
                 <button onclick="changeVideo('1e2BF96JmgFgCFi855HKTzpKbTnopgYyT')">
-                    ▶ Preview 10
+                    <span class="btn-label-full">▶ Preview 10</span>
+                    <span class="btn-label-short">▶ 10</span>
                 </button>
 
             </div>
@@ -243,69 +259,85 @@
     <!-- CONTACT -->
 
     <section id="contact">
+        <div class="contact-container">
+            <div class="contact-left">
 
-        <h2 class="contact-title">
-            thank you.
-        </h2>
+                <h2 class="contact-title">
+                    thank you.
+                </h2>
 
-        <div class="contact-grid">
+                <div class="contact-grid">
 
-            <a href="https://www.youtube.com/@MJEDITS" class="contact-card">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="5" width="20" height="14" rx="4" />
-                    <polygon fill="currentColor" stroke="none" points="10,8.5 10,15.5 16,12" />
-                </svg>
-                <span>YouTube</span>
-            </a>
+                    <a href="https://www.youtube.com/@MJEDITS" class="contact-card">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="4" />
+                            <polygon fill="currentColor" stroke="none" points="10,8.5 10,15.5 16,12" />
+                        </svg>
+                        <span>YouTube</span>
+                    </a>
 
-            <a href="https://github.com/Markjohnson77" class="contact-card">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                <span>GitHub</span>
-            </a>
+                    <a href="https://github.com/Markjohnson77" class="contact-card">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
 
-            <a href="https://www.linkedin.com/in/mark-johnson-marcus077/" class="contact-card">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="4" />
-                    <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" />
-                </svg>
-                <span>LinkedIn</span>
-            </a>
+                    <a href="https://www.linkedin.com/in/mark-johnson-marcus077/" class="contact-card">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="4" />
+                            <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" />
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
 
-            <a href="https://www.instagram.com/_marcus.j_/" class="contact-card">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-                </svg>
-                <span>Instagram</span>
-            </a>
+                    <a href="https://www.instagram.com/_marcus.j_/" class="contact-card">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
 
+                </div>
+
+                <div class="email-section">
+
+                    <p>Email</p>
+                    <a href="mailto:mark.j.kalathara@gmail.com" class="email-link">
+                        mark.j.kalathara@gmail.com
+                    </a>
+
+                    <p style="margin-top: 20px;">Mobile</p>
+                    <a href="tel:+919746843121" class="email-link">
+                        +91 9746843121
+                    </a>
+
+                </div>
+
+                <section class="resume-section">
+
+                    <a href="https://drive.google.com/file/d/19Oq9QGBnhSgOhGyxswbZehSq-9dNV_4i/view" target="_blank">
+                        View Resume →
+                    </a>
+
+                </section>
+
+            </div>
+
+            <div class="contact-right">
+                <a href="https://markjohnson77.github.io/Mark-Johnson-portfolio1/" target="_blank"
+                    class="ui-ux-portfolio">
+                    <img src="imgg.png" alt="UI UX Portfolio">
+                </a>
+            </div>
         </div>
-
-        <div class="email-section">
-
-            <p>Email</p>
-
-            <a href="mailto:mark.j.kalathara@gmail.com" class="email-link">
-                mark.j.kalathara@gmail.com
-            </a>
-
-        </div>
-
-        <section class="resume-section">
-
-            <a href="https://drive.google.com/file/d/19Oq9QGBnhSgOhGyxswbZehSq-9dNV_4i/view" target="_blank">
-                View Resume →
-            </a>
-
-        </section>
     </section>
 
     <script src="script.js"></script>

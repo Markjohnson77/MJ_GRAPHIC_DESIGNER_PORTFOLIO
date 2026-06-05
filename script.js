@@ -6,14 +6,6 @@ function changeVideo(videoId) {
 
     const player = document.getElementById("player");
 
-    player.src =
-        `https://drive.google.com/file/d/${videoId}/preview`;
-
-}
-function changeVideo(videoId) {
-
-    const player = document.getElementById("player");
-
     if (!player) {
         console.error("Player iframe not found");
         return;
@@ -43,6 +35,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: "smooth"
         });
 
+        // Close mobile menu on link click
+        const menu = document.getElementById("nav-menu");
+        const hamburger = document.getElementById("hamburger");
+        const overlay = document.querySelector(".nav-overlay");
+
+        if (menu) menu.classList.remove("open");
+        if (hamburger) hamburger.classList.remove("active");
+        if (overlay) overlay.classList.remove("active");
+
     });
 
 });
@@ -50,33 +51,95 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // =========================
-// NAVBAR BACKGROUND
+// NAVBAR HIDE ON SCROLL UP
 // =========================
 
-window.addEventListener("scroll", () => {
+(function () {
 
-    const nav = document.querySelector("nav");
+    const nav = document.getElementById("main-nav");
+    if (!nav) return;
 
-    if (window.scrollY > 50) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-        nav.style.background =
-            "rgba(245,241,232,.98)";
+    function updateNav() {
 
-        nav.style.boxShadow =
-            "0 5px 20px rgba(0,0,0,.08)";
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Scrolling DOWN — hide navbar
+            nav.classList.add("nav-hidden");
+        } else {
+            // Scrolling UP — show navbar
+            nav.classList.remove("nav-hidden");
+        }
+
+        // Background effect on scroll
+        if (currentScrollY > 50) {
+            nav.style.background = "rgba(245,241,232,.98)";
+            nav.style.boxShadow = "0 5px 20px rgba(0,0,0,.08)";
+        } else {
+            nav.style.background = "rgba(245,241,232,.95)";
+            nav.style.boxShadow = "none";
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
 
     }
 
-    else {
+    window.addEventListener("scroll", () => {
 
-        nav.style.background =
-            "rgba(245,241,232,.95)";
+        if (!ticking) {
+            window.requestAnimationFrame(updateNav);
+            ticking = true;
+        }
 
-        nav.style.boxShadow = "none";
+    });
 
+})();
+
+
+
+// =========================
+// HAMBURGER MENU TOGGLE
+// =========================
+
+(function () {
+
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("nav-menu");
+
+    if (!hamburger || !menu) return;
+
+    // Create overlay element
+    const overlay = document.createElement("div");
+    overlay.classList.add("nav-overlay");
+    document.body.appendChild(overlay);
+
+    function toggleMenu() {
+        hamburger.classList.toggle("active");
+        menu.classList.toggle("open");
+        overlay.classList.toggle("active");
     }
 
-});
+    function closeMenu() {
+        hamburger.classList.remove("active");
+        menu.classList.remove("open");
+        overlay.classList.remove("active");
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", closeMenu);
+
+    // Close menu on window resize past mobile breakpoint
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
+
+})();
 
 
 
