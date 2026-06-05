@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap');
+
 :root {
     --bg: #F5F1E8;
     --accent: #F28C00;
@@ -20,6 +22,10 @@ body {
     color: var(--text);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+}
+
+p {
+    font-family: 'DM Sans', sans-serif;
 }
 
 /* ===========================
@@ -165,6 +171,14 @@ section {
     grid-template-columns: 350px 1fr;
     gap: 60px;
     border-bottom: 1px solid var(--line);
+}
+
+#about {
+    background-image: linear-gradient(rgba(245, 241, 232, 0.8), rgba(245, 241, 232, 0.8)), url('abt%20bck.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .section-title {
@@ -736,5 +750,311 @@ section.active {
         height: 100%;
         border-radius: 8px;
         display: block;
+    }
+}
+
+/* ─────────────────────────────────────────
+   ui-experiments.css
+   Matches portfolio: warm beige bg + orange
+───────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f0ebe3;
+    --orange: #e68a00;
+    --orange-dim: rgba(230, 138, 0, 0.12);
+    --orange-glow: rgba(230, 138, 0, 0.22);
+    --black: #111111;
+    --text: #2a2a2a;
+    --muted: #888888;
+    --border: rgba(230, 138, 0, 0.32);
+    --card-bg: #ffffff;
+    --radius: 14px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background: var(--bg);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text);
+}
+
+/* ── Section Wrapper ── */
+.ui-experiments {
+    padding: 90px 6vw 110px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Header ── */
+.section-header {
+    margin-bottom: 56px;
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.ui-experiments .section-title {
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease 0.08s, transform 0.55s ease 0.08s;
+}
+
+.section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 440px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.16s, transform 0.5s ease 0.16s;
+}
+
+/* Animate-in state */
+.section-header.visible .section-label,
+.section-header.visible .section-title,
+.section-header.visible .section-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Grid ── */
+.experiments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* ── Card ── */
+.exp-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.55s ease,
+        transform 0.55s ease,
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.exp-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.exp-card:hover {
+    box-shadow: 0 18px 52px var(--orange-glow);
+    border-color: rgba(230, 138, 0, 0.65);
+}
+
+/* ── Preview Area ── */
+.preview-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 */
+    background: #111;
+    overflow: hidden;
+}
+
+/* Shimmer loader */
+.shimmer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(90deg,
+            #1c1c1c 0%,
+            #2e2e2e 40%,
+            #1c1c1c 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+}
+
+.shimmer.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* iframe */
+.preview-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    z-index: 1;
+}
+
+/* Hover overlay hint */
+.preview-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 14px 16px;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.55) 0%,
+            transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.exp-card:hover .preview-overlay {
+    opacity: 1;
+}
+
+.play-hint {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+}
+
+/* ── Card Info Bar ── */
+.card-info {
+    padding: 18px 20px 20px;
+    border-top: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--card-bg);
+    transition: background var(--transition);
+}
+
+.exp-card:hover .card-info {
+    background: #fdfaf5;
+}
+
+.card-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-num {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-tag {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* External link icon button */
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--orange-dim);
+    border: 1.5px solid var(--border);
+    color: var(--orange);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
+}
+
+.card-link:hover {
+    background: var(--orange);
+    color: #ffffff;
+    border-color: var(--orange);
+    transform: scale(1.1) rotate(8deg);
+}
+
+.card-link svg {
+    width: 15px;
+    height: 15px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .experiments-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ui-experiments {
+        padding: 60px 5vw 80px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .card-info {
+        padding: 14px 16px 16px;
+    }
+
+    .card-title {
+        font-size: 14px;
     }
 }

@@ -215,7 +215,7 @@ galleryImages.forEach(img => {
 
 
 
-        document
+        lightbox
             .querySelector(
                 ".close-lightbox"
             )
@@ -348,12 +348,12 @@ window.addEventListener(
                     section.clientHeight;
 
                 if (
-                    scrollY >= top - 200
+                    window.scrollY >= top - 200
                 ) {
-
-                    current =
-                        section.getAttribute("id");
-
+                    const sectionId = section.getAttribute("id");
+                    if (sectionId) {
+                        current = sectionId;
+                    }
                 }
 
             });
@@ -365,9 +365,7 @@ window.addEventListener(
             );
 
             if (
-                link.href.includes(
-                    current
-                )
+                current && link.getAttribute("href").includes(current)
             ) {
 
                 link.classList.add(
@@ -388,7 +386,7 @@ window.addEventListener(
 
 const buttons =
     document.querySelectorAll(
-        ".video-selector button"
+        ".preview-buttons button"
     );
 
 buttons.forEach(button => {
@@ -427,3 +425,64 @@ window.addEventListener(
             "1";
 
     });
+
+/* ─────────────────────────────────────────
+ui-experiments.js
+Scroll-triggered reveal + shimmer cleanup
+───────────────────────────────────────── */
+
+(function () {
+    'use strict';
+
+    // ── 1. Scroll-triggered reveal via IntersectionObserver ──
+
+    const header = document.querySelector('.section-header');
+    const cards = document.querySelectorAll('.exp-card');
+
+    // Staggered card delay
+    cards.forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.1}s`;
+    });
+
+    const revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12 }
+    );
+
+    if (header) revealObserver.observe(header);
+    cards.forEach((card) => revealObserver.observe(card));
+
+
+    // ── 2. Hide shimmer once iframe has loaded ──
+
+    const iframes = document.querySelectorAll('.preview-wrap iframe');
+
+    iframes.forEach((iframe) => {
+        const shimmer = iframe.closest('.preview-wrap')?.querySelector('.shimmer');
+        if (!shimmer) return;
+
+        // Fallback: hide shimmer after 5s even if load event doesn't fire
+        const fallback = setTimeout(() => shimmer.classList.add('hidden'), 5000);
+
+        iframe.addEventListener('load', () => {
+            clearTimeout(fallback);
+            // Small delay so iframe content paints before shimmer disappears
+            setTimeout(() => shimmer.classList.add('hidden'), 300);
+        });
+    });
+
+
+    // ── 3. Prevent card-link click from bubbling to card ──
+    const links = document.querySelectorAll('.card-link');
+    links.forEach((link) => {
+        link.addEventListener('click', (e) => e.stopPropagation());
+    });
+
+})();
