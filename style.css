@@ -209,8 +209,9 @@ section {
 
 .project-preview iframe {
     width: 100%;
-    height: 500px;
+    aspect-ratio: 16 / 9;
     border: none;
+    border-radius: 12px;
 }
 
 .project-number {
@@ -356,7 +357,7 @@ section {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .ui-ux-portfolio img {
@@ -527,10 +528,6 @@ section.active {
         grid-template-columns: 1fr;
     }
 
-    .project-preview iframe {
-        height: 400px;
-    }
-
     .project-number {
         position: static;
         font-size: 5rem;
@@ -622,8 +619,17 @@ section.active {
         font-size: 2.5rem;
     }
 
+    .project-preview {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .project-preview iframe {
-        height: 250px;
+        border-radius: 0;
+        aspect-ratio: 4 / 3;
+        height: auto;
     }
 
     /* Preview buttons — 5 per row, short label only */
@@ -636,17 +642,22 @@ section.active {
     }
 
     .preview-buttons {
-        grid-template-columns: repeat(5, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
-        max-width: 100%;
-        margin-top: 20px;
+        width: 100%;
+        margin: 0 auto 20px auto;
     }
 
     .preview-buttons button {
-        padding: 12px 6px;
+        padding: 15px 0;
         text-align: center;
         font-size: 0.9rem;
         border-radius: 8px;
+        flex: 1 1 calc(20% - 8px);
+        min-width: 45px;
+        max-width: 65px;
     }
 
     .preview-buttons button:hover {
@@ -699,35 +710,31 @@ section.active {
 /* ===========================
    RESPONSIVE — SMALL PHONE (≤480px)
    =========================== */
-
-@media (max-width: 480px) {
-
-    .hero h1 {
-        font-size: 3rem;
+/* Mobile video panel fix */
+@media (max-width: 768px) {
+    .project {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
     }
 
-    .section-title {
-        font-size: 2.4rem;
+    .project-info {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
-    .contact-title {
-        font-size: 2.4rem;
-    }
-
-    .preview-buttons {
-        gap: 6px;
-    }
-
-    .preview-buttons button {
-        padding: 10px 4px;
-        font-size: 0.8rem;
-    }
-
-    .photo-grid {
-        grid-template-columns: 1fr;
+    .project-preview {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
 
     .project-preview iframe {
-        height: 200px;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        display: block;
     }
 }
